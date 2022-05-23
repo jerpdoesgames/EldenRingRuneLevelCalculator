@@ -93,23 +93,41 @@ class runeIncomeCalculator
         if (incomeMultiplier > 0)
         {
             let runesEarned = this.runeIncomeContainer.value;
-            let lastIncomeIndex = 0;
 
-            for (let incomeIndex = 0; incomeIndex < upgradeCosts.length; incomeIndex++)
+            for (let incomeIndex = upgradeCosts.length - 1; incomeIndex >= 0; incomeIndex--)
             {
                 let earnedForThisLevel = Math.floor(upgradeCosts[incomeIndex] * incomeMultiplier);
-                if (runesEarned == earnedForThisLevel)
+
+                if (incomeIndex == 0 && runesEarned < earnedForThisLevel)   // RL1 (or below, since I don't know what the number actually is)
                 {
-                    output = lastIncomeIndex + 3;
+                    output = `<span>&le;1</span><p>For level 2: <b>${earnedForThisLevel}</b> runes</p>`;
                     break;
                 }
+                else if (runesEarned == earnedForThisLevel)
+                {
+                    let earnedForPrevLevel = incomeIndex > 0 ? Math.floor(upgradeCosts[incomeIndex - 1] * incomeMultiplier) : -1;
+                    let prevLevelString = (earnedForThisLevel == earnedForPrevLevel) ? `<p>Level ${incomeIndex + 1} is also <b>${earnedForPrevLevel}</b> runes</p>` : "";
+                    let sameIncomeTilde = (earnedForThisLevel == earnedForPrevLevel) ? `&tilde;` : "";
+                    output = `<span>${sameIncomeTilde}${incomeIndex + 2}</span>` + prevLevelString;
+                    break;
+                }
+                else if (runesEarned > earnedForThisLevel)
+                {
+                    let earnedForNextLevel = incomeIndex >= 0 && (incomeIndex + 1 < upgradeCosts.length) ? Math.floor(upgradeCosts[incomeIndex + 1] * incomeMultiplier) : -1;
+                    let showCurLevel = (runesEarned > earnedForThisLevel);
+                    let curLevelString = showCurLevel ? `<p>For level ${incomeIndex + 2}: <b>${earnedForThisLevel}</b> runes</p>` : "";
 
-                lastIncomeIndex = incomeIndex;
+                    let showNextLevel = (earnedForNextLevel != -1) && ((earnedForThisLevel == earnedForNextLevel) || runesEarned > earnedForThisLevel);
+                    let nextLevelString = showNextLevel ? `<p>For level ${incomeIndex + 3}: <b>${earnedForNextLevel}</b> runes</p>` : "";
+                    let gtString = showCurLevel ? `&gt;` : "";
+
+                    output = `<span>${gtString}${incomeIndex + 2}</span>` + curLevelString + nextLevelString;
+                    break;
+                }
             }
         }
 
         this.runeLevelContainer.innerHTML = output;
-
     }
 
     onPlayerTypeChanged()

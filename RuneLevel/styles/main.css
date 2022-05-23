@@ -20,7 +20,7 @@ html, body {
     background: linear-gradient(0deg, #373830 0%, #525044 15%, #2b2c26 70%, #0b0b09 100%);
     background-attachment: fixed;
 
-    text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
+    text-shadow: 0.15rem 0.15rem 0.0rem rgba(0, 0, 0, 0.50);
 }
 
 @font-face {
@@ -38,12 +38,6 @@ body {
 	font-size: 1.8rem;
     line-height: 1.9rem;
 	font-family: Garamond, Helvetica, Arial, sans-serif;
-
-	text-shadow:
-		0.2rem -0.2rem 0.25rem #00000066,
-		0.2rem -0.2rem 0.25rem #00000066,
-		-0.2rem 0.2rem 0.25rem #00000066,
-		0.2rem 0.2rem 0.25rem #00000066;
 }
 
 #contentBody {
@@ -64,6 +58,7 @@ h1 {
     font-size: 4rem;
     line-height: 5.2rem;
     font-weight: normal;
+    font-family: GaramondBold;
     padding: 0.25rem 0rem 0.25rem 0rem;
     text-align: center;
     background-color: #34362a66;
@@ -76,6 +71,7 @@ h2 {
     font-size: 2.5rem;
     line-height: 2.6rem;
     font-weight: normal;
+    font-family: GaramondBold;
     padding: 0.25rem 0rem 0.25rem 0rem;
     text-align: center;
     background-color: #34362a66;
@@ -106,6 +102,10 @@ select, input {
 }
 
 #outputRuneLevel {
+    width: 100%;
+}
+
+#outputRuneLevel span {
     background-color: #0d0d0b77;
     color: var(--colorText);
     font-size: 4.5rem;
@@ -115,6 +115,7 @@ select, input {
     border-radius: var(--borderThicknessGeneric);
     height: 5rem;
     line-height: 5rem;
+    display: block;
 }
 
 #footer {
@@ -123,7 +124,7 @@ select, input {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: 2rem auto;
+    margin: 0.5rem auto;
     padding-bottom: 2rem;
 }
 
@@ -159,7 +160,7 @@ a {
 
 a:link, a:active {
     color: var(--colorAccentDark);
-    font-weight: bold;
+    font-family: GaramondBold;
 }
 
 a:visited {
@@ -172,4 +173,17 @@ a:hover {
 
 a:active {
     color: var(--colorAccentDark);
+}
+
+#outputRuneLevel p {
+    font-size: 1.7rem;
+    line-height: 1.85rem;
+    margin: 0.5rem 0rem;
+    text-align: center;
+}
+
+@media screen and (max-width: 625px) {
+    h1 {
+        font-size: calc(100vw / 16.25);
+    }
 }

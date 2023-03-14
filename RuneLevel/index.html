@@ -6,8 +6,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="styles/main.css"/>
+        <link rel="stylesheet" type="text/css" href="styles/headerStream.css"/>
         <script src="data/upgradeCosts.js"></script>
 		<script src="script/runeIncome.js"></script>
+        <script src="script/headerStream.js"></script>
 
 		<meta property="og:title" content="Elden Ring Rune Level Calculator - by Jerp"/>
 		<meta property="og:description" content="Find out the level of the player who died based on how many runes you received."/>
@@ -19,17 +21,26 @@
 		<meta property="og:site" content="Jerp's Elden Ring tools"/>
         <meta property="og:locale" content="en_US"/>
 	</head>
-	<body onload="toolInstance.initialize();">
+	<body onload="toolInstance.initialize(); initializeHeaderStream();">
 
         <h1>Elden Ring Rune Level Calculator</h1>
 
+        <div id="header">
+            <div id="headerContent">
+                <p class="mainDescription">Find out the level of the player who died based on how many runes you received.</p>
+
+                <p class="mainDescription">
+                    <a href="https://jerp.tv/eldenring">Other helpful Elden Ring Tools &amp; Info</a>
+                </p>
+                <p id="headerStreamOpen" class="mainDescription">Want to support Jerp?  <a href="#" id="headerStreamOpenButton" onclick="headerStreamOpen();">Pop open the stream</a> while you work.</p>
+            </div>
+
+            <div id="headerStream">
+
+            </div>
+        </div>
+
         <div id="contentBody">
-
-            <p class="mainDescription">Find out the level of the player who died based on how many runes you received.</p>
-
-            <p class="mainDescription">
-                <a href="https://jerp.tv/eldenring">Other helpful Elden Ring Tools &amp; Info</a>
-            </p>
 
             <h2>I Am A:</h2>
 
